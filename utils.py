@@ -125,5 +125,5 @@ def splitResponse(strResp):
     #a,b,c,d = ExtractData('gab')
     #print(a[3])
     #print(b[3])
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+    #main()
