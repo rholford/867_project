@@ -56,9 +56,10 @@ def ExtractData(datasetName):
                     temp.append(j)
                 counterSpeech.append(temp)
                 lineNumber += 1
+        hateCount = len(hateSpeech)
                 
 
-    if datasetName == 'conan':
+    elif datasetName == 'conan':
         dataFile = open ('./data/conan/CONAN.json', 'r')
         fileText = []
         for line in dataFile:
@@ -86,6 +87,9 @@ def ExtractData(datasetName):
     random.shuffle(randomIndex)
     trainIndex = sorted(randomIndex[:int(pct*len(randomIndex))])
     trainHate = []
+    #print(len(hateSpeech))
+    #print(hateCount)
+    #print(len(counterSpeech))
     for i in range(hateCount):
         if (i in trainIndex):
             trainHate.append(hateSpeech[i])
@@ -119,11 +123,13 @@ def splitResponse(strResp):
 #model code goes here, see what we need
 #def///
 
-#def main():
-    #a, b = ExtractData('conan')
-    #a, b = ExtractData('reddit')
-    #a,b,c,d = ExtractData('gab')
+def main():
+    #a, b, c, d = ExtractData('conan')
+    #a, b, c, d= ExtractData('reddit')
+    a,b,c,d = ExtractData('gab')
     #print(a[3])
     #print(b[3])
-#if __name__ == "__main__":
-    #main()
+    print(len(a) + len(c))
+    print(len(b) + len(d))
+if __name__ == "__main__":
+    main()
