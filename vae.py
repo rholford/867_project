@@ -1,18 +1,19 @@
 import numpy as np
 import tensorflow as tf
 import tensorflow.keras as keras
+import math
 
 
-class Highway(keras.layers.Layer):
+class Highway(tf.Module): #from "Training very deep networks" paper
     def __init__(self, parameters):
         super(Highway,self).__init__()
-        self.n_layers = parameters.n_highway_layers
-        self.non_linear = [keras.layers.Dense(parameters.n_embed,input_shape=(parameters.n_embed,), activation=None) for i in range(self.n_layers)]
-        self.linear = [keras.layers.Dense(parameters.n_embed,input_shape=(parameters.n_embed,), activation=None) for i in range(self.n_layers)]
-        self.gate = [keras.layers.Dense(parameters.n_embed,input_shape=(parameters.n_embed,), activation=None) for i in range(self.n_layers)]
+        self.num_layers = parameters.num_highway_layers
+        self.non_linear = [keras.layers.Dense(parameters.n_embed,input_shape=(parameters.n_embed,), activation=None) for i in range(self.num_layers)]
+        self.linear = [keras.layers.Dense(parameters.n_embed,input_shape=(parameters.n_embed,), activation=None) for i in range(self.num_layers)]
+        self.gate = [keras.layers.Dense(parameters.n_embed,input_shape=(parameters.n_embed,), activation=None) for i in range(self.num_layers)]
     
-    def forward(self, x):
-        for layer in range(self.n_layers):
+    def __call__(self, x):
+        for layer in range(self.num_layers):
             transform_gate = keras.activations.sigmoid(self.linear[layer](x))
             carry_gate = 1-transform_gate
             non_linear = keras.activations.relu(self.non_linear[layer](x))
@@ -21,7 +22,7 @@ class Highway(keras.layers.Layer):
         return x
 
 
-class Encoder(keras.layers.Layer): #learns q_phi(z|x) = approx p_theta(z|x)
+class Encoder(tf.Module): 
     def __init__(self,parameters):
         super(Encoder,self).__init__()
         self.highway = Highway(parameters)
@@ -34,32 +35,32 @@ class Encoder(keras.layers.Layer): #learns q_phi(z|x) = approx p_theta(z|x)
         c_0 = tf.zeros([2*self.n_layers_E, batch_size, self.n_hidden_E])
         self.hidden = (h_0,c_0) 
 
-    def forward(self, x):
-        batch_size, n_seq, n_embed = tf.size(x)
+    def __call__(self, x):
+        batch_size, n_seq, n_embed = x.shape
         x = self.highway(x)
         self.init_hidden(batch_size)
         _, (self.hidden, _) = self.lstm(x,self.hidden)
-        self.hidden = self.hidden.reshape(self.n_layers_E,2,batch_size,self.n_hidden_E)
+        self.hidden = self.hidden.reshape([self.n_layers_E,2,batch_size,self.n_hidden_E])
         self.hidden = self.hidden[-1]
         e_hidden = tf.concat(list(self.hidden))
         return e_hidden
     
-class Generator(keras.layers.Layer):
+class Generator(tf.Module):
     def __init__(self, parameters):
         super(Generator,self).__init__()
         self.n_hidden_G = parameters.n_hidden_G
         self.n_layers_G = parameters.n_layers_G
-        self.n_z = parameters.n_z
-        self.lstm = keras.layers.LSTM(parameters.n_layers)
+        self.n_z = parameters.n_z #number of latent variables
+        self.lstm = keras.layers.LSTM(parameters.num_layers)
         self.fc = keras.layers.Dense(parameters.n_vocab, input_shape=(parameters.n_hidden_G,), activation=None) #don't know what this layer does
 
     def init_hidden(self, batch_size):
         h_0 = tf.zeros([2*self.n_layers_G, batch_size, self.n_hidden_G])
-        c_0 = tf.zeros([2*self.n_layers_G, batch_size, self.n_hidden_G])
-        self.hidden = (h_0,c_0) #may need get_cuda function, idk how it works in tensorflow
+        c_0 = tf.zeros([2*self.n_layers_G, batch_size, self.n_hidden_G]) #initialize covariance matrix
+        self.hidden = (h_0,c_0) 
 
-    def forward(self, x, z, g_hidden = None):
-        batch_size, n_seq, n_embed = tf.size(x)
+    def __call__(self, x, z, g_hidden = None):
+        batch_size, n_seq, n_embed = x.shape
         z = tf.concat([z]*n_seq).reshape(batch_size, n_seq, self.n_z)
         x = tf.concat([x,z],axis = 2)
 
@@ -72,7 +73,7 @@ class Generator(keras.layers.Layer):
 
         return output, self.hidden
     
-class VAE(keras.layers.Layer):
+class VAE(tf.Module):
     def __init__(self, parameters):
         super(VAE, self).__init__()
         self.embedding = keras.layers.Embedding(parameters.n_vocab, parameters.n_embed)
@@ -82,9 +83,9 @@ class VAE(keras.layers.Layer):
         self.generator = Generator(parameters)
         self.n_z = parameters.n_z
     
-    def forward(self, x, G_inp, z=None, G_hidden=None):
+    def __call__(self, x, G_inp, z=None, G_hidden=None):
         if z is None:
-            batch_size, n_seq = tf.size(x)
+            batch_size, n_seq = x.shape
             x = self.embedding(x)
             E_hidden = self.encoder(x)
             mu = self.hidden_to_mu(E_hidden)
@@ -98,7 +99,6 @@ class VAE(keras.layers.Layer):
         G_inp = self.embedding(G_inp)
         logit, G_hidden = self.generator(G_inp, z, G_hidden)
         return logit, G_hidden, kl
-
 
 
 
