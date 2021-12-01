@@ -106,7 +106,21 @@ def ExtractData(datasetName):
     for i in range(hateCount):
         if (i not in trainIndex):
             testCounter.append(counterSpeech[i])
+    trainCounter = flatten(trainCounter)
+    testCounter = flatten(testCounter)
+    
+    #flattening 
     return trainHate, trainCounter, testHate, testCounter
+
+#Flatten counter speech
+def flatten(lst):
+    lstOut = []
+    for subLst in lst:
+        for val in subLst:
+            lstOut.append(val)
+    return lstOut
+            
+        
 
 #helper function for csvs
 def splitResponse(strResp):
@@ -127,9 +141,9 @@ def main():
     #a, b, c, d = ExtractData('conan')
     #a, b, c, d= ExtractData('reddit')
     a,b,c,d = ExtractData('gab')
-    #print(a[3])
+    print(d[4])
     #print(b[3])
-    print(len(a) + len(c))
-    print(len(b) + len(d))
+    #print(len(a) + len(c))
+    #print(len(b) + len(d))
 if __name__ == "__main__":
     main()

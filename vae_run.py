@@ -44,4 +44,19 @@ def generate_input(x, train):
                 generator_input[i,j] = parameters.unk_token
     return generator_input
 
+def train_batch(x, generator_input, step, train=True):
+    logit, _, kld = vae(x, generator_input, None, None)
+    logit = logit.view(-1, opt.n_vocab)	                    #converting into shape (batch_size*(n_seq-1), n_vocab) to facilitate performing F.cross_entropy()
+    x = x[:, 1:x.size(1)]	                                #target for generator should exclude first word of sequence
+    x = x.contiguous().view(-1)	                            #converting into shape (batch_size*(n_seq-1),1) to facilitate performing F.cross_entropy()
+    rec_loss = F.cross_entropy(logit, x)
+    kld_coef = (math.tanh((step - 15000)/1000) + 1) / 2
+    # kld_coef = min(1,step/(200000.0))
+    loss = opt.rec_coef*rec_loss + kld_coef*kld
+    if train==True:	                                    #skip below step if we are performing validation
+        trainer_vae.zero_grad()
+        loss.backward()
+        trainer_vae.step()
+    return rec_loss.item(), kld.item()
+
 
