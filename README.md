@@ -27,7 +27,7 @@ Please read report for evaluation considerations.
 ## Results
 The model produced one line of text repeated
 
-## Files in this repo
+## Files in this Repository
 We included some non-final implementations to highlight other approaches taken. These are VAE_Text_Generation (Colab baseline).py, training_function.py, vae.py, vae_run.py. All these files include iterative trial and errors. 
 
 ## Overleaf Link - Final
