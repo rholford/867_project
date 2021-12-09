@@ -31,5 +31,4 @@ We included some non-final implementations to highlight other approaches taken.
 ## Overleaf Link - Final
 https://www.overleaf.com/read/gssrgmyfdkqm
 
-### Overleaf Link - Draft
-https://www.overleaf.com/1134735814bxztdjxnsnxn
+
