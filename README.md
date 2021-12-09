@@ -9,7 +9,7 @@ pip install numpy
 pip install scipy
 pip install -r orig_requirements.txt
 ```
-
+The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
 To train the model(s) in the paper, run this command:
 ```train
@@ -31,4 +31,5 @@ We included some non-final implementations to highlight other approaches taken.
 ## Overleaf Link - Final
 https://www.overleaf.com/read/gssrgmyfdkqm
 
-
+### Overleaf Link - Draft
+https://www.overleaf.com/1134735814bxztdjxnsnxn
