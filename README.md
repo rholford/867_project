@@ -10,8 +10,8 @@ pip install scipy
 pip install -r orig_requirements.txt
 ```
 ## Note
-utils.py, Main.py, languagequality.py, and the utility folder were not modified by us - these are from the original repo.
-Similairly Data/... and utility/.. are run requirements from the original.
+utils.py, Main.py, language_quality.py, were not modified by us - these are from the original repo.
+Similaily Data/... and utility/.. are requirements from the original.
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
@@ -25,8 +25,6 @@ for counter in range(nb_epoch):
     print('-------epoch: ',counter,'--------')
     vae.fit...
 ```
-## Code
-Please refer to the original author's README for how to run the second and third modules of the pipeline (under "Code"): https://github.com/WanzhengZhu/GPS/blob/master/README.md
 
 ## Evaluation
 Please read report for evaluation considerations.
