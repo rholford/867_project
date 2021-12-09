@@ -3,7 +3,6 @@
 ## Requirements
 To install requirements:
 ```setup
-pip install jupyter notebook
 pip install tensorflow version==2.6.0
 pip install tensorflow-addons
 pip install numpy
@@ -12,7 +11,7 @@ pip install -r orig_requirements.txt
 ```
 ## Note
 utils.py, Main.py, languagequality.py, and the utility folder were not modified by us - these are from the original repo.
-Similairly dta/... are run databases from:.
+Similairly Data/... and utility/.. are run requirements from the original.
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
@@ -32,7 +31,8 @@ Please read report for evaluation considerations.
 
 
 ## Model Summary
-<img src="{{ 'Model Summary.PNG' }}" id="about-img">
+![alt text](https://github.com/rholford]/867_project/blob/main/summary.PNG?raw=true)
+
 
 
 ## Results
