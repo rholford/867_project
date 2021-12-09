@@ -24,6 +24,8 @@ n_steps = 30000/parameters.batch_size
 for counter in range(nb_epoch):
     print('-------epoch: ',counter,'--------')
     vae.fit...
+```
+
 ## Evaluation
 Please read report for evaluation considerations.
 
