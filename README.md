@@ -30,6 +30,10 @@ for counter in range(nb_epoch):
 Please read report for evaluation considerations.
 
 
+## Model Summary
+<img src="{{ 'Model Summary.PNG' }}" id="about-img">
+
+
 ## Results
 The model produced one line of text repeated
 
