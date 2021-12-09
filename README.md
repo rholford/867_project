@@ -19,7 +19,7 @@ nb_epoch=70
 n_steps = 30000/parameters.batch_size 
 for counter in range(nb_epoch):
     print('-------epoch: ',counter,'--------')
-    vae.fit(sent_generator(TRAIN_DATA_FILE, parameters.batch_size),steps_per_epoch=n_steps, epochs=1, callbacks=[checkpointer, early_stopping],validation_data=(dat
+    vae.fit...
 ```
 ## Evaluation
 Please read report for evaluation considerations.
