@@ -6,6 +6,13 @@ To install requirements:
 pip install tensorflow version==2.6.0
 pip install tensorflow-addons
 pip install numpy
+pip install torch
+pip install transformers
+pip install scipy
+pip install tensorflow_text
+pip install bert
+pip install tqdm
+
 ```
 
 ## Training
