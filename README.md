@@ -25,6 +25,8 @@ for counter in range(nb_epoch):
     print('-------epoch: ',counter,'--------')
     vae.fit...
 ```
+## Code
+Please refer to the original author's README for how to run the second and third modules of the pipeline (under "Code"): https://github.com/WanzhengZhu/GPS/blob/master/README.md
 
 ## Evaluation
 Please read report for evaluation considerations.
