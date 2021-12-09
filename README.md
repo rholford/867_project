@@ -23,8 +23,6 @@ for counter in range(nb_epoch):
 ```
 ## Evaluation
 Please read report for evaluation considerations.
-## Pre-trained Models
-(links)
 
 ## Results
 The model produced one line of text repeated
