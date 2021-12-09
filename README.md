@@ -16,9 +16,7 @@ To train the model(s) in the paper, run this command:
 Training command here
 ```
 ## Evaluation
-```
-Human eval?
-```
+Please read report for evaluation considerations.
 ## Pre-trained Models
 (links)
 
