@@ -15,7 +15,7 @@ Similairly Data/... and utility/.. are run requirements from the original.
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
-To train the model(s) in the paper iteratively run through the attached notebook, Final_VAE
+To train the model iteratively run through the attached notebook, Final_VAE.ipynb
 
 The cell that trains is:
 ```
