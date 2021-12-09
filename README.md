@@ -9,9 +9,13 @@ pip install numpy
 pip install scipy
 pip install -r orig_requirements.txt
 ```
+
 ## Note
 utils.py, Main.py, languagequality.py, and the utility folder were not modified by us - these are from the original repo.
-Similairly Data/... and utility/.. are run requirements from the original.
+Source:https://github.com/WanzhengZhu/GPS
+Datasets (in data/..):
+Reddit/Gab: https://github.com/jing-qian/A-Benchmark-Dataset-for-Learning-to-Intervene-in-Online-Hate-Speech/tree/master/data
+Conan: https://github.com/marcoguerini/CONAN/tree/master/CONAN
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
