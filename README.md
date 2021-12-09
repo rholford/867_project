@@ -3,7 +3,9 @@
 ## Requirements
 To install requirements:
 ```setup
-pip install -r (or whatever)
+pip install tensorflow
+pip install tensorflow-addons
+pip install numpy
 ```
 
 ## Training
