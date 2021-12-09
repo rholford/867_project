@@ -16,6 +16,8 @@ Similaily Data/... and utility/.. are requirements from the original.
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 
 ## Code
+To execute the first module (generating counterspeech candidates), please execute Final_VAE.ipynb with the appropriate datasets (train_gab.csv and train_reddit.csv) and the glove embedding text file included in a same folder structure. The output is a text document of counterspeech arguments that will be used in modules 2 and 3. 
+
 Please refer to the original authors' README for instructions to run the second and third modules (under "Code"): https://github.com/WanzhengZhu/GPS/blob/master/README.md
 
 ## Training
