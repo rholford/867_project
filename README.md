@@ -9,16 +9,17 @@ pip install numpy
 pip install scipy
 pip install -r orig_requirements.txt
 ```
-## Note
-utils.py, Main.py, language_quality.py, were not modified by us - these are from the original repo.
-Similaily data/... and utility/.. are requirements from the original.
+## Code
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 
-## Code
-To execute the first module (generating counterspeech candidates), please execute Final_VAE.ipynb with the appropriate datasets (train_gab.csv and train_reddit.csv) and the glove embedding text file included in a same folder structure. The output is a text document of counterspeech arguments that will be used in modules 2 and 3. 
+To execute the first module of generating counterspeech candidates/the main focus of our reproducibility study, please execute Final_VAE.ipynb with the appropriate datasets (train_gab.csv and train_reddit.csv) and the glove embedding text file included in a same folder structure. The output is a text document of counterspeech arguments that will be used in modules 2 and 3. In this repo, the output, our results is "gab.txt".
 
-Please refer to the original authors' README for instructions to run the second and third modules (under "Code"): https://github.com/WanzhengZhu/GPS/blob/master/README.md
+Note: utils.py, Main.py, language_quality.py, were not modified by us - these are from the original repo. Similaily data/... and utility/...
+All these components are to be placed in the same folder structure as well.
+
+Please refer to the original authors' README for instructions to run the second and third modules (under "Code"): https://github.com/WanzhengZhu/GPS/blob/master/README.md<br>
+The "reddit" in ```python ./Main.py --dataset reddit``` refers to the dataset with which the first module was trained. To continue with our results, please run: ```python ./Main.py --dataset gab``` after module 2.
 
 ## Training
 The code that executes training (expected to last around 9 hours on Kaggle for 70 epochs) is present in the main notebook, Final_VAE.ipynb, cell no: 16:
