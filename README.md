@@ -11,9 +11,14 @@ pip install -r orig_requirements.txt
 ```
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
-To train the model(s) in the paper, run this command:
-```train
-Training command here
+To train the model(s) in the paper iteratively run through the attached notebook, Final_VAE
+The cell that trains is:
+```
+nb_epoch=70
+n_steps = 30000/parameters.batch_size 
+for counter in range(nb_epoch):
+    print('-------epoch: ',counter,'--------')
+    vae.fit(sent_generator(TRAIN_DATA_FILE, parameters.batch_size),steps_per_epoch=n_steps, epochs=1, callbacks=[checkpointer, early_stopping],validation_data=(dat
 ```
 ## Evaluation
 Please read report for evaluation considerations.
