@@ -21,6 +21,8 @@ Human eval?
 ## Results
 The model produced one line of text repeated
 
+## Files in this repo
+We included some non-final implementations to highlight other approaches taken.
 
 ## Overleaf Link - Final
 (I can't share this link)
