@@ -11,6 +11,7 @@ pip install -r orig_requirements.txt
 ```
 ## Note
 utils.py, Main.py, languagequality.py were not modified by us - these are from the original repo.
+Similairly Data/... and utility/.. are run requirements from the original.
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
 ## Training
