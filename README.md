@@ -14,6 +14,10 @@ utils.py, Main.py, language_quality.py, were not modified by us - these are from
 Similaily Data/... and utility/.. are requirements from the original.
 
 The GloVe embeddings can be downloaded from https://nlp.stanford.edu/projects/glove/, the 6B pre-trained model was used.
+
+## Code
+Please refer to the original authors' README for instructions to run the second and third modules (under "Code"): https://github.com/WanzhengZhu/GPS/blob/master/README.md
+
 ## Training
 To train the model iteratively run through the attached notebook, Final_VAE.ipynb
 
