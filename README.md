@@ -3,7 +3,7 @@
 ## Requirements
 To install requirements:
 ```setup
-pip install tensorflow
+pip install tensorflow version==2.6.0
 pip install tensorflow-addons
 pip install numpy
 ```
